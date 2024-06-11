@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Mobile Web OS</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			user-select: none;
+			font-family: verdana;
+		}
+
+		body {
+			background: darkslateblue;
+			color: #fff;
+		}
+
+		div.lockscreen {
+			text-align: center;
+		}
+
+		div.lockscreen h2 {
+			padding: 20px;
+		}
+
+		div.passlock {
+			background-color: rgba(2, 2, 2, 0.2);
+			backdrop-filter: blur(5px);
+			color: #fff;
+			width: 70%;
+			margin-left: none;
+			margin-right: none;
+			left: 0;
+			right: 0;
+			display: inline-block;
+		}
+
+		input[type=button],
+		input[type=reset] {
+			background-color: rgba(5, 5, 5, 0.5);
+			backdrop-filter: blur(5px);
+			color: #fff;
+			padding: 20px 28px;
+			border: none;
+			outline: none;
+			font-size: 14px;
+			font-weight: bold;
+			margin: 10px;
+			border-radius: 25%;
+		}
+
+		input[type=button]:active,
+		input[type=reset]:active {
+			background-color: #777;
+		}
+
+		input[type=password] {
+			background-color: rgba(4, 4, 4, 0.5);
+			backdrop-filter: blur(5px);
+			color: #fff;
+			padding: 15px;
+			border: none;
+			outline: none;
+			width: 63%;
+			margin-left: none;
+			margin-right: none;
+			left: 0;
+			right: 0;
+			text-align: center;
+			margin-bottom: 15px;
+			display: inline-block;
+			font-size: 16px;
+		}
+
+		input::placeholder {
+			color: #fff;
+		}
+
+		div.lockscreen footer {
+			position: absolute;
+			bottom: 0;
+			margin-left: none;
+			margin-right: none;
+			left: 0;
+			right: 0;
+			padding: 8px;
+			cursor: pointer;
+		}
+
+		.tooltip {
+			position: relative;
+			display: inline-block;
+			border-bottom: 1px dotted black;
+			margin-top: 25%;
+			cursor: pointer;
+		}
+
+		.tooltip .tooltiptext {
+			cursor: text;
+			visibility: hidden;
+			width: 120px;
+			background-color: black;
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 5px 0;
+			position: absolute;
+			z-index: 1;
+			bottom: 100%;
+			left: 50%;
+			margin-left: -60px;
+
+			/* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+			opacity: 0;
+			transition: opacity 1s;
+		}
+
+		.tooltip:hover .tooltiptext {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		div.home {
+			display: none;
+			font-size: 16px;
+			color: lightblue;
+			padding: 10px;
+		}
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+
+			$('.openlock').on("click", function () {
+				$('.openlock').slideUp();
+				$('#lock').slideDown();
+			});
+
+			$('.ok').on("click", function () {
+				$('.del').hide();
+			});
+
+		});
+
+	</script>
+
+	<script>
+		$(document).on('click', '.ok', function () {
+			var answer = $("#textBox").val();
+			if (answer == 2513) {
+				$('.home').slideDown();
+				$('#lock').slideUp(function () {
+					alert('Welcome to the brand new WebOS Mobile Operating System.');
+				});
+
+			}
+			else if (answer.length === 0) {
+				alert('please put your passcode');
+			}
+			else {
+				alert('wrong');
+			}
+		});
+	</script>
+
+	<script>
+		window.onbeforeunload = function () {
+			return 'Reload?';
+		}
+	</script>
+</head>
+
+<body>
+	<div class="lockscreen">
+		<div id="lock" style="display: none;">
+
+		
+			<h2>
+				Welcome to lockscreen
+			</h2>
+
+			<form name="calc">
+
+				<input type="password" placeholder="" name="ans" value="" readonly="readonly" id="textBox">
+
+				<br>
+
+				<div class="passlock">
+
+					<input type="button" value="1" onclick="document.calc.ans.value+='1'">
+
+					<input type="button" value="2" onclick="document.calc.ans.value+='2'">
+
+					<input type="button" value="3" onclick="document.calc.ans.value+='3'">
+
+					<br>
+
+					<input type="button" value="4" onclick="document.calc.ans.value+='4'">
+
+					<input type="button" value="5" onclick="document.calc.ans.value+='5'">
+
+					<input type="button" value="6" onclick="document.calc.ans.value+='6'">
+
+					<br>
+
+					<input type="button" value="7" onclick="document.calc.ans.value+='7'">
+
+					<input type="button" value="8" onclick="document.calc.ans.value+='8'">
+
+					<input type="button" value="9" onclick="document.calc.ans.value+='9'">
+
+					<br>
+
+					<input type="button" value="⌫"
+						onclick="document.calc.ans.value=calc.ans.value.substr(0,calc.ans.value.length-1)"
+						style="font-weight: initial;padding: 20px 25px;">
+
+					<input type="button" value="0" onclick="document.calc.ans.value+='0'">
+
+					<input type="reset" value="OK" class="ok" style="padding: 20px 25px;">
+
+				</div>
+
+			</form>
+
+			<div class="tooltip">
+				Check the passcode
+				<span class="tooltiptext">
+					Your passcode is: 2513.
+				</span>
+			</div>
+
+		</div>
+
+		<script>
+
+		</script>
+
+		<footer class="openlock">
+			click to open lock
+		</footer>
+
+	</div>
+
+	<div class="home">
+
+
+
+	</div>
+
+
+
+
+
+</body>
+
+</html>

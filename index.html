@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Mobile Web OS</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="shortcut icon"
+        href="https://th.bing.com/th/id/OIP.rRNYxicpQS9A4eXxkcC_LAHaHa?w=185&h=185&c=7&r=0&o=5&pid=1.7"
+        type="image/x-icon">
+
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+
+</head>
+
+<body>
+    <div class="desktop">
+        <p>
+            <span style="color: darkblue;">Note:</span>
+            Try to resize your browser window in a portrait format (600px) to see the content. <br>
+            Because it only supports mobile size format and totally based on phone screen-size.
+        </p>
+    </div>
+
+    <div class="webmobileos">
+        <div class="lockscreen">
+
+            <div class="time">
+
+                <div id="myClock" class="clock-screenlock" title="know your current time"></div><br>
+
+                <p id="date">
+                    <script>
+                        var d = new Date();
+                        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                        document.getElementById("date").innerHTML = months[d.getMonth()].split('-')[0];
+                    </script>
+                    <script>
+                        document.write(new Date().getDate()).split('-')[0];
+                    </script>,
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                </p>
+
+                <p id="Day"></p>
+                <script>
+                    var d = new Date();
+                    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    document.getElementById("Day").innerHTML = days[d.getDay()];
+                </script>
+            </div>
+
+            <div id="lock" style="display: none;">
+
+                <form name="calc">
+
+                    <input type="password" maxlength="4" pattern="[0-9]{4}" name="ans" readonly="readonly"
+                        id="passcodeInput">
+
+                    <br>
+
+                    <div class="passlock">
+
+                        <input type="button" value="1" onclick="document.calc.ans.value+='1'">
+
+                        <input type="button" value="2" onclick="document.calc.ans.value+='2'">
+
+                        <input type="button" value="3" onclick="document.calc.ans.value+='3'">
+
+                        <br>
+
+                        <input type="button" value="4" onclick="document.calc.ans.value+='4'">
+
+                        <input type="button" value="5" onclick="document.calc.ans.value+='5'">
+
+                        <input type="button" value="6" onclick="document.calc.ans.value+='6'">
+
+                        <br>
+
+                        <input type="button" value="7" onclick="document.calc.ans.value+='7'">
+
+                        <input type="button" value="8" onclick="document.calc.ans.value+='8'">
+
+                        <input type="button" value="9" onclick="document.calc.ans.value+='9'">
+
+                        <br>
+
+                        <button type="button"
+                            onclick="document.calc.ans.value=calc.ans.value.substr(0,calc.ans.value.length-1)">
+                            <i class="material-icons">backspace</i>
+                        </button>
+
+                        <input type="button" value="0" onclick="document.calc.ans.value+='0'">
+
+                        <button type="reset" class="ok">
+                            <i class="material-icons">&#xe876;</i>
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <div class="tooltip">
+                    <i class="material-icons"
+                        style="font-size:16px;position:absolute;margin-bottom:200px;margin-left:-18px;">info</i>
+                    Check the passcode
+                    <span class="tooltiptext">
+                        Your passcode is: 2222.
+                    </span>
+                </div>
+
+            </div>
+
+            <i id="openlock" class="material-icons" title="click to open lock">keyboard_arrow_up</i>
+
+        </div>
+
+        <div class="home">
+
+            <div class="bg">
+                <img src="https://images.pexels.com/photos/2449605/pexels-photo-2449605.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="">
+            </div>
+
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Greetings!</strong> Welcome to the brand new <b style="color:rgb(247, 134, 28)"> Browser-based
+                    webmobileos</b>.
+            </div>
+
+            <div class="top-bar">
+                <div id="myClock1" class="clock"></div>
+                <div class="name">webmobileos</div>
+                <!-- <i class="material-symbols-outlined" id="drag-notification"
+                    >arrow_drop_down</i> -->
+                <svg xmlns="http://www.w3.org/2000/svg" id="drag-notification" title="Drag down to open notification"
+                    height="48px" viewBox="0 -960 960 960" width="48px" fill="#FFFFFF">
+                    <path d="M160-390v-60h640v60H160Zm0-120v-60h640v60H160Z" />
+                </svg>
+            </div>
+
+            <div class="notification">
+                <i class="material-icons" style="color: #451a8a;font-size: 20px;">notifications</i>
+                <hr>
+                <p>You have been received a new message.</p>
+                <!-- <i class="material-icons">clear</i> -->
+                <img id="close_apps" src="https://img.icons8.com/ios-glyphs/30/000000/multiply.png">
+            </div>
+
+            <!-- <div class="search">
+                <script async src="https://cse.google.com/cse.js?cx=a075f9ce1383141cf">
+                </script>
+                <div class="gcse-search"></div>
+            </div> -->
+
+            <div class="container" id="apps" style="display:none;text-align:center">
+                <div class="apps" align="center">
+                    <div class="app">
+                        <a href="https://www.google.com/" target="_blank">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB"
+                                alt="google-icon" align="">
+                            <p>Google</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="https://www.youtube.com/" target="_blank">
+                            <img src="img/youtube-logo-png-46031-Windows.ico" alt="">
+                            <p>Youtube</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+                                alt="">
+                            <p>Facebook</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png"
+                                alt="">
+                            <p>Instagram</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="https://www.twitter.com/" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png?w=740&t=st=1686424670~exp=1686425270~hmac=d4f89bb86670d9992b84cb08352c5c3047c1d6789bf72171c0b041c5a27c2139"
+                                alt="">
+                            <p>Twitter</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="https://www.whatsapp.com/" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png"
+                                alt="">
+                            <p>Whatsapp</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="https://www.gmail.com/" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/1200px-Gmail_icon_%282020%29.svg.png"
+                                alt="">
+                            <p>Gmail</p>
+                        </a>
+                    </div>
+                    <div class="app">
+                        <a href="settings.html" target="iframe_a" id="settings_link">
+                            <img id="close_apps" src="https://img.icons8.com/ios-glyphs/30/000000/settings.png"
+                                style="background-color: aliceblue;">
+                            <p>Settings</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="frames">
+                <div class="settings" style="display:none;">
+                    <iframe src="index.html" frameborder="0" name="iframe_a" title="Iframe Example"></iframe>
+                </div>
+            </div>
+
+            <div class="app-tray">
+                <!-- <img id="close_apps" src="https://img.icons8.com/ios-glyphs/30/000000/multiply.png"> -->
+                <img id="open_apps" src="img\Menu.png">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                    fill="#FFFFFF">
+                    <path
+                        d="M795-120q-116 0-236.5-56T335-335Q232-438 176-558.5T120-795q0-19.29 12.86-32.14Q145.71-840 165-840h140q14 0 24 10t14 25l26.93 125.64Q372-665 369.5-653.5t-10.73 19.73L259-533q26 44 55 82t64 72q37 38 78 69.5t86 55.5l95-98q10-11 23.15-15 13.15-4 25.85-2l119 26q15 4 25 16.04 10 12.05 10 26.96v135q0 19.29-12.86 32.14Q814.29-120 795-120ZM229-588l81-82-23-110H180q2 42 13.5 88.5T229-588Zm369 363q41 19 89 31t93 14v-107l-103-21-79 83ZM229-588Zm369 363Z" />
+                </svg>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function showTime() {
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+
+        var session = "AM";
+
+        if (h == 0) {
+            h = 12;
+        }
+
+        if (h > 12) {
+            h = h - 12;
+
+            var session = "PM"
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+
+        var time = h + " : " + m + " " + session;
+
+        document.getElementById("myClock").innerText = time;
+        document.getElementById("myClock").innerContent = time;
+        document.getElementById("myClock1").innerText = time;
+        document.getElementById("myClock1").innerContent = time;
+
+        setTimeout(showTime, 1000);
+    }
+    showTime();
+</script>

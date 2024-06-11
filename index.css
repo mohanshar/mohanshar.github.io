@@ -1,0 +1,464 @@
+div.desktop {
+  display: inline;
+  color: rgb(22, 184, 130);
+  padding: 8px 5px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  background-color: rgb(120, 137, 184);
+}
+
+div.webmobileos {
+  display: none;
+}
+
+/* Smartphone Portrait and Landscape */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: "Lucida Sans", sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: rgb(247, 106, 12);
+    color: #fff;
+  }
+
+  div.desktop {
+    display: none;
+  }
+
+  div.webmobileos {
+    display: inline;
+  }
+
+  div.lockscreen {
+    text-align: center;
+  }
+
+  div.lockscreen h2 {
+    padding: 20px;
+  }
+
+  div.time {
+    margin-top: 100px;
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    background: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  div.clock-screenlock {
+    font-size: 40px;
+    color: #fff;
+    padding: 10px;
+  }
+
+  div.lock {
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  div.passlock {
+    background-color: rgba(122, 8, 8, 0.603);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    max-width: fit-content;
+    margin: 0 auto;
+    border-radius: 25px;
+    border: 1px solid rgb(177, 137, 8);
+    border-bottom: 1px solid rgb(230, 168, 54);
+    /* display: inline-block; */
+  }
+
+  input[type="button"],
+  button[type="reset"],
+  button[type="button"] {
+    background-color: #00000041;
+    /* background-color: rgba(5, 5, 5, 0.5); */
+    /* backdrop-filter: blur(5px); */
+    color: #e09999;
+    padding: 18px 20px;
+    border: 1px solid rgb(241, 123, 55);
+    border-bottom: 1px solid rgb(223, 226, 43);
+    outline: none;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 8px;
+    border-radius: 25%;
+  }
+
+  .material-icons {
+    font-size: 12px;
+    max-width: min-content;
+  }
+
+  input[type="button"]:active,
+  button[type="reset"]:active,
+  button[type="button"]:active {
+    background-color: #e74646bb;
+  }
+
+  input[type="password"] {
+    background-color: rgba(4, 4, 4, 0.5);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    padding: 15px;
+    border: 1px solid rgb(214, 226, 43);
+    border-bottom: 1px solid rgb(235, 183, 86);
+    outline: none;
+    max-width: fit-content;
+    border-radius: 15px 18px;
+    margin-top: 100px;
+    margin-bottom: 3px;
+    margin-left: none;
+    margin-right: none;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+  }
+
+  input::placeholder {
+    color: #fff;
+  }
+
+  i#openlock {
+    color: #fff;
+    font-size: 30px;
+    margin: 0 auto;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    padding: 8px;
+  }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    margin-top: 15%;
+    margin-left: none;
+    margin-right: none;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    color: rgb(255, 231, 13);
+  }
+
+  .tooltip .tooltiptext {
+    cursor: text;
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(218, 199, 28, 0.459);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  div.home {
+    display: none;
+    font-size: 16px;
+    color: lightblue;
+    padding: 10px;
+    background: none;
+  }
+
+  .alert {
+    padding: 20px;
+    background-color: #532c08ef;
+    color: rgb(240, 195, 195);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10%;
+    border-radius: 10px;
+    border: 1px solid rgb(228, 158, 28);
+    z-index: 4;
+  }
+
+  .closebtn {
+    margin-left: 15px;
+    color: rgb(252, 102, 102);
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .closebtn:hover {
+    color: rgb(207, 3, 3);
+  }
+
+  div.bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+  }
+
+  div.bg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+  }
+
+  div.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* margin: 0 auto; */
+    /* min-width: 50%; */
+    height: 30px;
+    background-color: #eec18dd0;
+    padding: 5px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+  }
+
+  div.clock {
+    margin-top: 5px;
+    left: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffd92de7;
+    max-width: fit-content;
+  }
+
+  div.name {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    padding: 5px;
+    font-size: 14px;
+    color: #ffe15b;
+    max-width: fit-content;
+  }
+
+  div.top-bar svg {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    color: #7a7a2be7;
+    cursor: pointer;
+  }
+
+  div.notification {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 100%;
+    max-height: 99.99%;
+    padding: 5px;
+    padding-bottom: 0px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffffe0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+  }
+
+  div.notification img#close_apps {
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  div.notification hr {
+    margin: auto;
+  }
+
+  div.notification p {
+    font-size: 12px;
+    color: #451a8a;
+    padding: 5px;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  /* div.search {
+    margin-top: 20px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+
+  div.app-tray {
+    border-top: 2px solid #eb812acc;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #ffffff42;
+    backdrop-filter: blur(5px);
+    padding: 25px;
+  }
+
+  div.app-tray img {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 1px;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    background-color: #ffffffa8;
+    border-radius: 6px;
+  }
+
+  div.app-tray img:active {
+    background-color: #ffffffd8;
+  }
+
+  div.container {
+    text-align: right;
+  }
+
+  div.container div.apps {
+    display: grid;
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    justify-content: center;
+
+    /* border: 2px solid #fcb9008e; */
+    background-color: #ffffff4d;
+    /* background-color: #2c2222d0; */
+    box-shadow: inset 2px 2px 30px 0px #e2d6d19c;
+    backdrop-filter: blur(5px);
+    max-width: fit-content;
+    height: 300px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    position: fixed;
+    bottom: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  div.container div.apps div.app {
+    width: auto;
+    height: fit-content;
+    margin: 2px;
+    margin-top: 20px;
+    /* background-color: #f1f1f1d8; */
+    padding: 5px;
+    border-radius: 15px 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  div.container div.apps div.app:hover {
+    background-color: #06032c4f;
+  }
+
+  div.container div.apps div.app:active {
+    background-color: #100e2e41;
+  }
+
+  div.container div.apps div.app a {
+    text-decoration: none;
+    text-align: center;
+  }
+
+  div.container div.apps div.app a img {
+    height: 30px;
+    width: 30px;
+    margin: auto;
+    /* backdrop-filter: blur(5px); */
+    border-radius: 5px;
+    /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  }
+
+  div.container div.apps div.app a p {
+    color: #ffffff;
+    font-size: 14px;
+  }
+
+  div.container div.apps div.app img {
+    height: 30px;
+    width: 30px;
+    margin: auto;
+    /* backdrop-filter: blur(5px); */
+    border-radius: 5px;
+    /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  }
+
+  div.container div.apps div.app p {
+    color: #f1e8e8;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  div.frames div.settings iframe {
+    position: relative;
+    top: 0;
+    height: 300px;
+    width: 100%;
+  }
+}
