@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMS • Contact</title>
+
+    <link
+      rel="shortcut icon"
+      href="company logo/logo.jpg"
+      type="image/x-icon"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script src="contact.js"></script>
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+
+  <body onscroll="show()">
+    <div class="header">
+      <a>
+        <div class="bar">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+        </div>
+
+        <div
+          id="cross"
+          style="display: none"
+          onclick="document.body.style.overflow = 'auto'"
+        >
+          <div class="bar3"></div>
+          <div class="bar4"></div>
+        </div>
+      </a>
+      <div class="h1">
+        <h1>Sharma Marketing and Suppliers Pvt. Ltd.</h1>
+      </div>
+      <div class="menu">
+        <!-- <hr /> -->
+
+        <div class="logo">
+          <img src="company logo/logo.jpg" alt="Company Logo" />
+        </div>
+
+        <ul>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li>
+            <a href="ab.html">About</a>
+          </li>
+
+          <li>
+            <a href="product.html">Products</a>
+          </li>
+
+          <li>
+            <a href="market.html">Market</a>
+          </li>
+
+          <li>
+            <a href="contact.html" class="active">Contact</a>
+          </li>
+        </ul>
+        <br /><br />
+        <div class="clock">
+          <iframe
+            scrolling="no"
+            border="0"
+            frameborder="0"
+            marginwidth="0"
+            marginheight="0"
+            allowtransparency="true"
+            src="https://www.ashesh.com.np/linknepali-time.php?time_only=no&font_color=333333&aj_time=yes&font_size=14&line_brake=1&api=232170o417"
+            width="195"
+            height="45"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="ab.html">About</a>
+        <a href="product.html">Products</a>
+        <a href="market.html">Market</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </header>
+
+    <a href="#top" id="scrolling">Go to Top &#9650;</a>
+
+    <br /><br /><br />
+
+    <div id="page">
+      <div class="title">
+        <p>Contact</p>
+      </div>
+
+      <div class="about-text">
+        <div class="desc-title">Description:</div>
+        <img
+          src="company logo/logo.jpg"
+          alt="sharma marketing & suppliers"
+          class="profilepic"
+        />
+        <br />
+        <b>Hello there</b>! Welcome to the
+        <b>sharma marketing and suppliers</b> landing page. We are located in
+        the heart of JeetpurSimara Submetropolitan city - 02, Simara (Bara),
+        Nepal. We provide the best service to our customers. We deliver the best
+        quality of foods, cosmetics and daily useful home items at the best
+        price.
+      </div>
+
+      <div class="contact-info">
+        <p>You can contact us at the following address :</p>
+        <ul>
+          <li>
+            <i class="fa fa-location-arrow"></i>&nbsp;&nbsp;&nbsp;
+            <a target="_blank" href="https://goo.gl/maps/HPAGFaNSNi1ZNMRT6">
+              JeetpurSimara-02, Simara, Bara</a
+            >
+          </li>
+          <li>
+            <i class="fa fa-phone"></i> &nbsp;
+            <a href="tel:+977-9843839007"> +977-9843839007</a>
+          </li>
+          <li>
+            <i class="fa fa-envelope"></i>&nbsp;&nbsp;
+            <a href="mailto:sharmamarketingandsuppliers@gmail.com"
+              >sharmamarketingandsuppliers@gmail.com</a
+            >
+          </li>
+          <li>
+            <i class="fa fa-whatsapp"></i>&nbsp;&nbsp;
+            <a
+              target="_blank"
+              href="https://wa.me/9779843839007?text=I'm%20interested%20in%20your%20product%20."
+              >+977-9843839007</a
+            >
+          </li>
+          <li>
+            <i class="fa fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;
+            <a target="_blank" href=""
+              >Sharma Marketing and Suppliers Pvt. Ltd.</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="copyright">
+      Copyrights &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      A.D. (2081 B.S.). Sharma Marketing and Suppliers Pvt. Ltd. All Rights
+      Reserved.
+    </footer>
+
+    <script>
+      function show() {
+        var x = document.getElementById("scrolling");
+        if (
+          document.body.scrollTop > 80 ||
+          document.documentElement.scrollTop > 80
+        ) {
+          x.style.display = "initial";
+        } else {
+          x.style.display = "none";
+        }
+      }
+    </script>
+
+    <!-- <a aria-label="Chat on WhatsApp" href="https://wa.me/9779811236178?text=I'm%20interested!"> <img
+  alt="Chat on WhatsApp" src="icons/WhatsAppButtonGreenSmall.png" />
+<a> -->
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMS • Products</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script src="product.js"></script>
+    <link rel="stylesheet" href="product.css" />
+  </head>
+
+  <body onscroll="show()">
+    <div class="header">
+      <a href="#top">
+        <div class="bar" onclick="document.body.style.overflow = 'hidden'">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+        </div>
+
+        <div
+          id="cross"
+          style="display: none"
+          onclick="document.body.style.overflow = 'auto'"
+        >
+          <div class="bar3"></div>
+          <div class="bar4"></div>
+        </div>
+      </a>
+
+      <h1 class="h1">Sharma Marketing and Suppliers Pvt. Ltd.</h1>
+
+      <div id="menu">
+        <hr />
+        <ul>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li>
+            <a href="ab.html">About</a>
+          </li>
+
+          <li>
+            <a href="product.html" class="active">Products</a>
+          </li>
+
+          <li>
+            <a href="market.html">Market</a>
+          </li>
+
+          <li>
+            <a href="contact.html">Contact</a>
+          </li>
+        </ul>
+
+        <div class="clock">
+          <iframe
+            scrolling="no"
+            border="0"
+            frameborder="0"
+            marginwidth="0"
+            marginheight="0"
+            allowtransparency="true"
+            src="https://www.ashesh.com.np/linknepali-time.php?time_only=no&font_color=333333&aj_time=yes&font_size=14&line_brake=1&api=232170o417"
+            width="195"
+            height="45"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="ab.html">About</a>
+        <a href="product.html" class="active">Products</a>
+        <a href="market.html">Market</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </header>
+
+    <a href="#top" id="scrolling">Go to Top &#9650;</a>
+
+    <script>
+      function show() {
+        var x = document.getElementById("scrolling");
+        if (
+          document.body.scrollTop > 80 ||
+          document.documentElement.scrollTop > 80
+        ) {
+          x.style.display = "initial";
+        } else {
+          x.style.display = "none";
+        }
+      }
+    </script>
+
+  </body>
+</html>
