@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Grade - NEB</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background-color: white;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #2c3e50;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .subject-grade {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .subject-grade input {
+        flex: 1;
+      }
+
+      button {
+        background-color: #006699;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+      }
+
+      button:hover {
+        background-color: #004f80;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>National Examination Board</h2>
+      <h3>Submit Student Grades</h3>
+      <form id="gradeForm">
+        <label
+          >Student Name:
+          <input type="text" id="name" required />
+        </label>
+        <label
+          >Symbol Number:
+          <input type="text" id="symbol" required />
+        </label>
+        <label
+          >Date of Birth:
+          <input type="date" id="dob" required />
+        </label>
+
+        <div id="subjectsContainer">
+          <div class="subject-grade">
+            <input
+              type="text"
+              placeholder="Subject Name"
+              class="subject"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Grade (e.g. A+)"
+              class="grade"
+              required
+            />
+          </div>
+        </div>
+
+        <button type="button" onclick="addSubjectField()">
+          Add More Subject
+        </button>
+        <br />
+        <button type="submit">Submit Grades</button>
+      </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBTqK2cKF8HcfmbxCKYiGVHjEFSzp_Z5rI",
+        authDomain: "studentgrades-2d64f.firebaseapp.com",
+        projectId: "studentgrades-2d64f",
+        storageBucket: "studentgrades-2d64f.firebasestorage.app",
+        messagingSenderId: "1074997371804",
+        appId: "1:1074997371804:web:c19985f72b08830803de59",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      function addSubjectField() {
+        const container = document.getElementById("subjectsContainer");
+        const div = document.createElement("div");
+        div.className = "subject-grade";
+        div.innerHTML = `
+        <input type="text" placeholder="Subject Name" class="subject" required />
+        <input type="text" placeholder="Grade (e.g. B+)" class="grade" required />
+      `;
+        container.appendChild(div);
+      }
+
+      document
+        .getElementById("gradeForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const symbol = document.getElementById("symbol").value;
+          const dob = document.getElementById("dob").value;
+
+          const subjects = document.querySelectorAll(".subject");
+          const grades = document.querySelectorAll(".grade");
+
+          const results = [];
+          for (let i = 0; i < subjects.length; i++) {
+            if (subjects[i].value && grades[i].value) {
+              results.push({
+                subject: subjects[i].value,
+                grade: grades[i].value,
+              });
+            }
+          }
+
+          db.collection("students")
+            .add({
+              name,
+              symbol,
+              dob,
+              results,
+            })
+            .then(() => {
+              alert("Grades submitted successfully!");
+              document.getElementById("gradeForm").reset();
+              document.getElementById("subjectsContainer").innerHTML =
+                '<div class="subject-grade"> <input type="text" placeholder="Subject Name" class="subject" required /> <input type="text" placeholder="Grade (e.g. A+)" class="grade" required /> </div>';
+            })
+            .catch((error) => {
+              alert("Error submitting grades: " + error.message);
+            });
+        });
+    </script>
+  </body>
+</html>
