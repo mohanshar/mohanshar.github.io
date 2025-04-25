@@ -1,102 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>View Result - NEB</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f2f2f2;
-      padding: 30px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEB Result Sheet</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        padding: 30px;
+      }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background-color: white;
-      padding: 30px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+      .container {
+        max-width: 900px;
+        margin: auto;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
 
-    h2, h3 {
-      text-align: center;
-      color: #2c3e50;
-    }
+      .header {
+        text-align: center;
+        border-bottom: 2px solid #006699;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+      }
 
-    form {
-      margin-top: 20px;
-      text-align: center;
-    }
+      .header h2 {
+        color: #006699;
+        margin-bottom: 5px;
+      }
 
-    input[type="text"], input[type="date"] {
-      width: 45%;
-      padding: 8px;
-      margin: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+      .header h3 {
+        color: #006699;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
 
-    button {
-      background-color: #006699;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        font-size: 16px;
+      }
 
-    button:hover {
-      background-color: #004f80;
-    }
+      .info p {
+        margin: 5px 0;
+      }
 
-    .result-section {
-      margin-top: 30px;
-      border-top: 1px solid #ccc;
-      padding-top: 20px;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 12px;
+        text-align: center;
+      }
 
-    table, th, td {
-      border: 1px solid #999;
-    }
+      th {
+        background-color: #e6f2ff;
+        color: #003d66;
+      }
 
-    th, td {
-      padding: 10px;
-      text-align: center;
-    }
+      .gpa-section {
+        text-align: right;
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
 
-    .download-btn {
-      text-align: center;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>National Examination Board</h2>
-    <h3>View Student Result</h3>
+      .legend {
+        font-size: 14px;
+        margin-top: 20px;
+        border-top: 1px dashed #aaa;
+        padding-top: 10px;
+        color: #555;
+      }
 
-    <form id="resultForm">
-      <input type="text" id="symbol" placeholder="Enter Symbol Number" required />
-      <input type="date" id="dob" max="2025-04-25" required />
-      <br>
-      <button type="submit">View Result</button>
-    </form>
+      .download-btn {
+        text-align: center;
+        margin-top: 20px;
+      }
 
-    <div class="result-section" id="resultSection" style="display:none;">
-      <h3>Result Sheet</h3>
-      <p><strong>Name:</strong> <span id="nameDisplay"></span></p>
-      <p><strong>Symbol No.:</strong> <span id="symbolDisplay"></span></p>
-      <p><strong>Date of Birth:</strong> <span id="dobDisplay"></span></p>
+      .download-btn button {
+        background-color: #006699;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
 
+      .download-btn button:hover {
+        background-color: #004d73;
+      }
+
+      .input-section {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .input-section input {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .input-section button {
+        padding: 10px 20px;
+        background-color: #006699;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .input-section button:hover {
+        background-color: #004d73;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>National Examination Board (NEB)</h2>
+        <h3>Student Result Sheet</h3>
+      </div>
+
+      <!-- Input Section for Symbol No. and Date of Birth -->
+      <div class="input-section">
+        <input type="text" id="symbolInput" placeholder="Enter Symbol No." />
+        <input
+          type="text"
+          id="dobInput"
+          placeholder="Enter Date of Birth (YYYY-MM-DD)"
+        />
+        <button onclick="fetchResults()">View Result</button>
+      </div>
+
+      <!-- Student Information -->
+      <div class="info">
+        <div>
+          <p><strong>Name:</strong> <span id="nameDisplay"></span></p>
+          <p><strong>Symbol No.:</strong> <span id="symbolDisplay"></span></p>
+        </div>
+        <div>
+          <p><strong>Date of Birth:</strong> <span id="dobDisplay"></span></p>
+          <p>
+            <strong>School:</strong>
+            <span id="schoolDisplay">Example H.S.S.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Results Table -->
       <table>
         <thead>
           <tr>
@@ -107,97 +173,138 @@
         <tbody id="resultTable"></tbody>
       </table>
 
+      <!-- GPA Section -->
+      <div class="gpa-section">GPA: <span id="gpaDisplay">-</span></div>
+
+      <!-- Download Button -->
       <div class="download-btn">
-        <button onclick="downloadPDF()">Download PDF</button>
+        <button onclick="downloadPDF()">Download as PDF</button>
+      </div>
+
+      <!-- Grade Legend -->
+      <div class="legend">
+        <p>
+          <strong>Grade Legend:</strong> A+ = 4.0 | A = 3.6 | B+ = 3.2 | B = 2.8
+          | C+ = 2.4 | C = 2.0 | D = 1.6 | E = 0.8 | N = 0.0
+        </p>
+        <p>
+          <em
+            >This result is generated by the official NEB Result Management
+            System.</em
+          >
+        </p>
       </div>
     </div>
-  </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBTqK2cKF8HcfmbxCKYiGVHjEFSzp_Z5rI",
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBTqK2cKF8HcfmbxCKYiGVHjEFSzp_Z5rI",
         authDomain: "studentgrades-2d64f.firebaseapp.com",
         projectId: "studentgrades-2d64f",
         storageBucket: "studentgrades-2d64f.firebasestorage.app",
         messagingSenderId: "1074997371804",
         appId: "1:1074997371804:web:c19985f72b08830803de59",
-    };
+      };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
 
-    document.getElementById('resultForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+      function fetchResults() {
+        const symbol = document.getElementById("symbolInput").value;
+        const dob = document.getElementById("dobInput").value;
 
-      const symbol = document.getElementById('symbol').value;
-      const dob = document.getElementById('dob').value;
+        if (!symbol || !dob) {
+          alert("Please enter both Symbol No. and Date of Birth.");
+          return;
+        }
 
-      db.collection("students")
-        .where("symbol", "==", symbol)
-        .where("dob", "==", dob)
-        .get()
-        .then(snapshot => {
-          if (snapshot.empty) {
-            alert("No record found!");
-            return;
-          }
-
-          snapshot.forEach(doc => {
-            const data = doc.data();
-            document.getElementById('nameDisplay').textContent = data.name;
-            document.getElementById('symbolDisplay').textContent = data.symbol;
-            document.getElementById('dobDisplay').textContent = data.dob;
-
-            const table = document.getElementById('resultTable');
-            table.innerHTML = '';
-
-            if (Array.isArray(data.results)) {
-              data.results.forEach(row => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${row.subject}</td><td>${row.grade}</td>`;
-                table.appendChild(tr);
-              });
+        db.collection("students")
+          .where("symbol", "==", symbol)
+          .where("dob", "==", dob)
+          .get()
+          .then((snapshot) => {
+            if (snapshot.empty) {
+              alert("No record found!");
+              return;
             }
 
-            document.getElementById('resultSection').style.display = 'block';
+            snapshot.forEach((doc) => {
+              const data = doc.data();
+              document.getElementById("nameDisplay").textContent = data.name;
+              document.getElementById("symbolDisplay").textContent =
+                data.symbol;
+              document.getElementById("dobDisplay").textContent = data.dob;
+
+              let total = 0;
+              let count = 0;
+              const table = document.getElementById("resultTable");
+              table.innerHTML = "";
+
+              data.results.forEach((result) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td>${result.subject}</td><td>${result.grade}</td>`;
+                table.appendChild(tr);
+
+                const gradePoint =
+                  {
+                    "A+": 4.0,
+                    A: 3.6,
+                    "B+": 3.2,
+                    B: 2.8,
+                    "C+": 2.4,
+                    C: 2.0,
+                    D: 1.6,
+                    E: 0.8,
+                    N: 0.0,
+                  }[result.grade] || 0.0;
+
+                total += gradePoint;
+                count++;
+              });
+
+              const gpa = (total / count).toFixed(2);
+              document.getElementById("gpaDisplay").textContent = gpa;
+            });
           });
-        })
-        .catch(error => {
-          alert("Error retrieving result: " + error.message);
+      }
+
+      async function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        const name = document.getElementById("nameDisplay").textContent;
+        const symbol = document.getElementById("symbolDisplay").textContent;
+        const dob = document.getElementById("dobDisplay").textContent;
+        const gpa = document.getElementById("gpaDisplay").textContent;
+
+        doc.setFontSize(16);
+        doc.text("National Examination Board (NEB)", 20, 20);
+        doc.setFontSize(12);
+        doc.text(`Name: ${name}`, 20, 35);
+        doc.text(`Symbol No: ${symbol}`, 20, 45);
+        doc.text(`DOB: ${dob}`, 20, 55);
+        doc.text(`GPA: ${gpa}`, 20, 65);
+
+        const tableRows = Array.from(
+          document.querySelectorAll("#resultTable tr")
+        ).map((row) => {
+          const cells = row.querySelectorAll("td");
+          return [cells[0].innerText, cells[1].innerText];
         });
-    });
 
-    async function downloadPDF() {
-      const jsPDF = window.jspdf.jsPDF;
-      const doc = new jsPDF();
+        doc.autoTable({
+          head: [["Subject", "Grade"]],
+          body: tableRows,
+          startY: 75,
+        });
 
-      const name = document.getElementById('nameDisplay').textContent;
-      const symbol = document.getElementById('symbolDisplay').textContent;
-      const dob = document.getElementById('dobDisplay').textContent;
-
-      doc.setFontSize(14);
-      doc.text("National Examination Board", 20, 20);
-      doc.setFontSize(12);
-      doc.text(`Name: ${name}`, 20, 35);
-      doc.text(`Symbol No: ${symbol}`, 20, 45);
-      doc.text(`Date of Birth: ${dob}`, 20, 55);
-
-      doc.autoTable({
-        startY: 65,
-        head: [["Subject", "Grade"]],
-        body: Array.from(document.querySelectorAll('#resultTable tr')).map(tr => {
-          const cells = tr.querySelectorAll('td');
-          return [cells[0].textContent, cells[1].textContent];
-        })
-      });
-
-      doc.save(`${symbol}_Result.pdf`);
-    }
-  </script>
-</body>
+        doc.save(`${symbol}_NEB_Result.pdf`);
+      }
+    </script>
+  </body>
 </html>
