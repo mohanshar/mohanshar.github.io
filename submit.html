@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Grades</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Firebase Compat SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <h2>Submit Student Grades</h2>
+    <form id="gradeForm">
+      <label>Name: <input type="text" id="name" required /></label><br />
+      <label>Symbol No: <input type="text" id="symbol" required /></label><br />
+      <label>Date of Birth: <input type="date" id="dob" required /></label
+      ><br /><br />
+      <div id="subjects">
+        <input
+          type="text"
+          class="subject"
+          placeholder="Subject Name"
+          required
+        />
+        <input type="text" class="grade" placeholder="Grade" required /><br />
+      </div>
+      <button type="button" onclick="addSubject()">Add Subject</button
+      ><br /><br />
+      <button type="submit">Submit Grades</button>
+    </form>
+
+    <script>
+      // ✅ Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBTqK2cKF8HcfmbxCKYiGVHjEFSzp_Z5rI",
+        authDomain: "studentgrades-2d64f.firebaseapp.com",
+        projectId: "studentgrades-2d64f",
+        storageBucket: "studentgrades-2d64f.firebasestorage.app",
+        messagingSenderId: "1074997371804",
+        appId: "1:1074997371804:web:c19985f72b08830803de59",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      // ✅ Add event listener after DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("gradeForm");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const symbol = document.getElementById("symbol").value;
+          const dob = document.getElementById("dob").value;
+
+          const subjects = document.querySelectorAll(".subject");
+          const grades = document.querySelectorAll(".grade");
+
+          let results = [];
+          for (let i = 0; i < subjects.length; i++) {
+            if (subjects[i].value && grades[i].value) {
+              results.push({
+                subject: subjects[i].value,
+                grade: grades[i].value,
+              });
+            }
+          }
+
+          db.collection("students")
+            .add({
+              name,
+              symbol,
+              dob,
+              results,
+            })
+            .then(() => {
+              alert("Grades submitted successfully!");
+              form.reset();
+            })
+            .catch((error) => {
+              alert("Error: " + error.message);
+            });
+        });
+      });
+
+      // ✅ Function to dynamically add more subject-grade fields
+      function addSubject() {
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <input type="text" class="subject" placeholder="Subject Name" required>
+        <input type="text" class="grade" placeholder="Grade" required><br>`;
+        document.getElementById("subjects").appendChild(div);
+      }
+    </script>
+  </body>
+</html>

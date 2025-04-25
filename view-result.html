@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Result</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase Compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  
+  <!-- html2pdf.js for PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <h2>Check Student Result</h2>
+  <form id="searchForm">
+    <label>Symbol No: <input type="text" id="symbol" required></label><br>
+    <label>Date of Birth: <input type="date" id="dob" required></label><br><br>
+    <button type="submit">View Result</button>
+  </form>
+
+  <div id="resultSection" style="display:none; margin-top: 20px;">
+    <h3>Result Sheet</h3>
+    <p><strong>Name:</strong> <span id="studentName"></span></p>
+    <p><strong>Symbol No:</strong> <span id="studentSymbol"></span></p>
+    <p><strong>Date of Birth:</strong> <span id="studentDOB"></span></p>
+    <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody id="resultTable"></tbody>
+    </table>
+    <br>
+    <button onclick="downloadPDF()">📄 Download PDF</button>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTqK2cKF8HcfmbxCKYiGVHjEFSzp_Z5rI",
+        authDomain: "studentgrades-2d64f.firebaseapp.com",
+        projectId: "studentgrades-2d64f",
+        storageBucket: "studentgrades-2d64f.firebasestorage.app",
+        messagingSenderId: "1074997371804",
+        appId: "1:1074997371804:web:c19985f72b08830803de59",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const symbol = document.getElementById('symbol').value;
+      const dob = document.getElementById('dob').value;
+
+      db.collection("students")
+        .where("symbol", "==", symbol)
+        .where("dob", "==", dob)
+        .get()
+        .then(querySnapshot => {
+          if (querySnapshot.empty) {
+            alert("No student found with given Symbol No and DOB.");
+            return;
+          }
+
+          const data = querySnapshot.docs[0].data();
+          document.getElementById('studentName').innerText = data.name;
+          document.getElementById('studentSymbol').innerText = data.symbol;
+          document.getElementById('studentDOB').innerText = data.dob;
+
+          const resultTable = document.getElementById('resultTable');
+          resultTable.innerHTML = "";
+          data.results.forEach(entry => {
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${entry.subject}</td><td>${entry.grade}</td>`;
+            resultTable.appendChild(row);
+          });
+
+          document.getElementById('resultSection').style.display = "block";
+        })
+        .catch(error => {
+          alert("Error fetching result: " + error.message);
+        });
+    });
+
+    function downloadPDF() {
+      const element = document.getElementById("resultSection");
+      const opt = {
+        margin:       0.5,
+        filename:     'ResultSheet.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+</body>
+</html>
